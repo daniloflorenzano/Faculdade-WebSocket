@@ -1,0 +1,32 @@
+.container {
+    width: 400px;
+    margin: 40px auto;
+}
+.chat-box {
+    height: 400px;
+    margin: 20px auto;
+    border-color: gray;
+    border-radius: 5%;
+    border-style: solid;
+    padding: 10px;
+}
+
+.text-box {
+    display: block;
+    margin: 0 auto;
+}
+
+.text-box_input {
+    width: 270px;
+    margin-left: 28px;
+}
+
+.user-name_input {
+       display: inline;
+       margin-left: 7%;
+    }
+
+.user {
+    display: inline;
+    margin-left: 19%;
+}
