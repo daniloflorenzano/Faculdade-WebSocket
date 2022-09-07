@@ -15,9 +15,8 @@
             <p class="user">Nome:</p>
             <input type="text" class="user-name_input">
         </div>
-        <div class="chat-box">
-            <p>Danilo: Olá!</p>
-        </div>
+
+        <div class="chat-box" id="chat-box"></div>
 
         <div class="text-box">
             <input type="text" name="NOME_DO_FORMULARIO" class="text-box_input">
@@ -25,6 +24,29 @@
         </div>
     </main>
 
+
+
+    <script>
+        const webSocket = new WebSocket('ws://localhost:5187');
+        const chatBox = document.getElementById('chat-box');
+        
+
+        webSocket.onopen = () => {
+            webSocket.send('message from web client!');
+            webSocket.send('message from web client!2');
+            webSocket.send('message from web client!3');
+            webSocket.send('message from web client!4');
+
+        }
+
+        webSocket.onmessage = (event) => {
+            if (event.data.length > 0) {
+                const message = event.data;
+
+                chatBox.insertAdjacentHTML('beforeend', `<p class="message">${message}</p>`);
+            }            
+        }
+    </script>
 </body>
 
 </html>
