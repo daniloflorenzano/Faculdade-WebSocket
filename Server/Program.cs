@@ -30,10 +30,9 @@ app.Map("/", async context =>
 
                 foreach (var connection in connections) // broadcasting
                 {
-                    await connection.Value.SendAsync(recievedMessageInBuffer, WebSocketMessageType.Text, true, default);
+                    if (connection.Value.State == WebSocketState.Open)
+                        await connection.Value.SendAsync(recievedMessageInBuffer, WebSocketMessageType.Text, true, default);
                 }
-
-                await Task.Delay(1000);
             }
         }
     }
