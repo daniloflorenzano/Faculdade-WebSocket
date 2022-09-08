@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 var buffer = new byte[256]; 
-var messages = new List<string>() {" "};
+var connections = new Dictionary<string, WebSocket>();
 
 app.UseWebSockets();
 app.Map("/", async context =>
@@ -16,7 +16,9 @@ app.Map("/", async context =>
     else
     {
         using var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-        while (webSocket.State == WebSocketState.Open)
+        connections.Add(Guid.NewGuid().ToString(), webSocket);
+
+        while (true)
         {
             var res = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
             if (res.MessageType == WebSocketMessageType.Close)
@@ -26,10 +28,9 @@ app.Map("/", async context =>
                 var recievedMessage = Encoding.ASCII.GetString(buffer, 0, res.Count);
                 var recievedMessageInBuffer =  Encoding.ASCII.GetBytes(recievedMessage);
 
-                if (messages.Last() != recievedMessage)
+                foreach (var connection in connections) // broadcasting
                 {
-                        messages.Add(recievedMessage);
-                        await webSocket.SendAsync(recievedMessageInBuffer, WebSocketMessageType.Text, true, CancellationToken.None);
+                    await connection.Value.SendAsync(recievedMessageInBuffer, WebSocketMessageType.Text, true, default);
                 }
 
                 await Task.Delay(1000);
