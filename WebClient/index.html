@@ -1,52 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Chat</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Chat</title>
-</head>
+	<body>
+		<main class="container">
+			<form class="form">
+				<div class="user-name">
+					<p class="user">Nome:</p>
+					<input type="text" class="user-name_input" required />
+				</div>
 
-<body>
-    <main class="container">
-        <div class="user-name">
-            <p class="user">Nome:</p>
-            <input type="text" class="user-name_input">
-        </div>
+				<div class="chat-box"></div>
 
-        <div class="chat-box" id="chat-box"></div>
+				<div class="text-box">
+					<label>
+						<input
+							type="text"
+							name="NOME_DO_FORMULARIO"
+							class="text-box_input"
+							required
+						/>
+						<input type="submit" value="Enviar" onclick="sendMessage()" />
+					</label>
+				</div>
+			</form>
+		</main>
 
-        <div class="text-box">
-            <input type="text" name="NOME_DO_FORMULARIO" class="text-box_input">
-            <input type="button" value="Enviar">
-        </div>
-    </main>
+		<script>
+			const webSocket = new WebSocket('ws://localhost:5187');
 
+			const chatBox = document.querySelector('.chat-box');
+			const userName = document.querySelector('.user-name_input');
+			const message = document.querySelector('.text-box_input');
 
+			webSocket.onmessage = (event) => {
+				if (event.data.length > 0) {
+					const recivedMessage = event.data;
 
-    <script>
-        const webSocket = new WebSocket('ws://localhost:5187');
-        const chatBox = document.getElementById('chat-box');
-        
+					chatBox.insertAdjacentHTML(
+						'beforeend',
+						`<p class="message">${recivedMessage}</p>`
+					);
+				}
+			};
 
-        webSocket.onopen = () => {
-            webSocket.send('message from web client!');
-            webSocket.send('message from web client!2');
-            webSocket.send('message from web client!3');
-            webSocket.send('message from web client!4');
+			function sendMessage() {
+				if (userName.value !== '' && message.value !== '') {
+					const formatedMessage = `${userName.value}: ${message.value}`;
+					webSocket.send(formatedMessage);
+				}
+			}
 
-        }
+			// stop reloading page after submit the message
+			const form = document.querySelector('.form');
 
-        webSocket.onmessage = (event) => {
-            if (event.data.length > 0) {
-                const message = event.data;
-
-                chatBox.insertAdjacentHTML('beforeend', `<p class="message">${message}</p>`);
-            }            
-        }
-    </script>
-</body>
-
+			form.addEventListener('submit', (e) => {
+				e.preventDefault();
+			});
+		</script>
+	</body>
 </html>
