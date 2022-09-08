@@ -30,3 +30,22 @@
     display: inline;
     margin-left: 19%;
 }
+
+.message span{
+    padding: 4px;
+    color: white;
+    background-color: gray;
+    border-color: gray;
+    border-style: solid;
+    border-radius: 5%;
+}
+
+.self-message span {
+    padding: 4px 15px 4px 4px;
+    background-color: #00a884;
+    border-color: #00a884;
+}
+
+.self-message {
+    text-align: right;
+}

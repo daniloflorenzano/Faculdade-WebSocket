@@ -24,7 +24,7 @@
 							type="text"
 							name="NOME_DO_FORMULARIO"
 							class="text-box_input"
-							required
+							autocomplete="off"
 						/>
 						<input type="submit" value="Enviar" onclick="sendMessage()" />
 					</label>
@@ -41,19 +41,29 @@
 
 			webSocket.onmessage = (event) => {
 				if (event.data.length > 0) {
-					const recivedMessage = event.data;
+					let recievedMessage = event.data;
+					console.log(recievedMessage);
+					const userFromMessage = recievedMessage.split(':')[0];
+					let messageClass = 'message';
+
+					if (userFromMessage === userName.value) {
+						messageClass = 'message self-message';
+						recievedMessage = recievedMessage.split(':')[1];
+					}
 
 					chatBox.insertAdjacentHTML(
 						'beforeend',
-						`<p class="message">${recivedMessage}</p>`
+						`<p class="${messageClass}"><span>${recievedMessage}</span></p>`
 					);
 				}
 			};
 
 			function sendMessage() {
-				if (userName.value !== '' && message.value !== '') {
+				if (userName.value.trim() !== '' && message.value !== '') {
 					const formatedMessage = `${userName.value}: ${message.value}`;
 					webSocket.send(formatedMessage);
+
+					message.value = '';
 				}
 			}
 
