@@ -32,18 +32,29 @@
 }
 
 .message span{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
     padding: 4px;
     color: white;
     background-color: gray;
     border-color: gray;
     border-style: solid;
-    border-radius: 5%;
+    border-radius: 5px 10px 10px;;
+}
+
+.message b {
+    font-size: 14px;
+    color: #94eef2;
+    font-weight: normal;
 }
 
 .self-message span {
+    border-radius: 10px 10px 5px;
     padding: 4px 15px 4px 4px;
     background-color: #00a884;
     border-color: #00a884;
+    display: inline-block;
 }
 
 .self-message {

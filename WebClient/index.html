@@ -41,19 +41,25 @@
 
 			webSocket.onmessage = (event) => {
 				if (event.data.length > 0) {
-					let recievedMessage = event.data;
-					console.log(recievedMessage);
-					const userFromMessage = recievedMessage.split(':')[0];
-					let messageClass = 'message';
 
-					if (userFromMessage === userName.value) {
+					let res = {
+						user: event.data.split(':')[0],
+						message: event.data.split(':')[1]
+					}
+					
+					let messageClass = 'message';
+					if (res.user === userName.value) {
 						messageClass = 'message self-message';
-						recievedMessage = recievedMessage.split(':')[1];
+						res.user = '';
 					}
 
 					chatBox.insertAdjacentHTML(
 						'beforeend',
-						`<p class="${messageClass}"><span>${recievedMessage}</span></p>`
+						`<p class="${messageClass}">
+							<span>
+							<b>${res.user}</b> ${res.message}
+							</span>
+						</p>`
 					);
 				}
 			};
@@ -67,7 +73,7 @@
 				}
 			}
 
-			// stop reloading page after submit the message
+			// previne comportamento padrão de refresh do form
 			const form = document.querySelector('.form');
 
 			form.addEventListener('submit', (e) => {
