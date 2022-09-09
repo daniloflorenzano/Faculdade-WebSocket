@@ -20,7 +20,11 @@ app.Map("/", async context =>
 
         while (true)
         {
+            if (webSocket.State == WebSocketState.Closed)
+                continue;
+            
             var res = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
+            
             if (res.MessageType == WebSocketMessageType.Close)
                 await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, null, CancellationToken.None);
             else
@@ -32,6 +36,9 @@ app.Map("/", async context =>
                 {
                     if (connection.Value.State == WebSocketState.Open)
                         await connection.Value.SendAsync(recievedMessageInBuffer, WebSocketMessageType.Text, true, default);
+                    
+                    else
+                        connections.Remove(connection.Key);
                 }
             }
         }
