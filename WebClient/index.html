@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Chat</title>
+	</head>
+
+	<body>
+		<main class="container">
+			<form class="form">
+				<div class="user-name">
+					<p class="user">Nome:</p>
+					<input type="text" class="user-name_input" required />
+				</div>
+
+				<div class="chat-box"></div>
+
+				<div class="text-box">
+					<label>
+						<input
+							type="text"
+							name="NOME_DO_FORMULARIO"
+							class="text-box_input"
+							autocomplete="off"
+						/>
+						<input type="submit" value="Enviar" onclick="sendMessage()" />
+					</label>
+				</div>
+			</form>
+		</main>
+
+		<script>
+			const webSocket = new WebSocket('ws://localhost:5187');
+
+			const chatBox = document.querySelector('.chat-box');
+			const userName = document.querySelector('.user-name_input');
+			const message = document.querySelector('.text-box_input');
+
+			webSocket.onmessage = (event) => {
+				if (event.data.length > 0) {
+
+					let res = {
+						user: event.data.split(':')[0],
+						message: event.data.split(':')[1]
+					}
+					
+					let messageClass = 'message';
+					if (res.user === userName.value) {
+						messageClass = 'message self-message';
+						res.user = '';
+					}
+
+					chatBox.insertAdjacentHTML(
+						'beforeend',
+						`<p class="${messageClass}">
+							<span>
+							<b>${res.user}</b> ${res.message}
+							</span>
+						</p>`
+					);
+				}
+			};
+
+			function sendMessage() {
+				if (userName.value.trim() !== '' && message.value !== '') {
+					const formatedMessage = `${userName.value}: ${message.value}`;
+					webSocket.send(formatedMessage);
+
+					message.value = '';
+				}
+			}
+
+			// previne comportamento padrão de refresh do form
+			const form = document.querySelector('.form');
+
+			form.addEventListener('submit', (e) => {
+				e.preventDefault();
+			});
+		</script>
+	</body>
+</html>
