@@ -36,24 +36,7 @@
     </div>
 
     <script>
-        function loadInbox() {
-            $.ajax({
-                url: 'process/inbox.php',
-                success: function (data) {
-                    $('#inbox .container').html(data);
-                },
-                error: function (error) {
-                    console.log(error);
-                    Swal.fire({
-                        title: 'Erro',
-                        text: error.statusText,
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    })
-                }
-            });
-        }
-
+        function loadInbox() {}
         function loadProfile(id = 0) {
             $.ajax({
                 url: 'process/profile.php?id=' + id,

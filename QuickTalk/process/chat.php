@@ -29,7 +29,7 @@
         <script>
             const message = document.querySelector('#messageInput');
             const userName = document.querySelector('.name').innerHTML;
-            const chat = document.querySelector('.innerContainer');
+            const chatbox = document.querySelector('.innerContainer');
 
 
                 const webSocket = new WebSocket('ws://localhost:5187');
@@ -45,7 +45,7 @@
                         textClass = "msg-user self-user"
                     }
 
-                    chat.insertAdjacentHTML('beforeend', `<p class="${textClass}">${res.user}: ${res.message}</p>`);
+                    chatbox.insertAdjacentHTML('beforeend', `<p class="${textClass}">${res.user}: ${res.message}</p>`);
                 }
 
                 function sendMessage() {
