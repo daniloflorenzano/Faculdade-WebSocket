@@ -1,0 +1,97 @@
+@import "global.css";
+
+div.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #34ADFF;
+    background-image: -webkit-linear-gradient(150deg, #34ADFF 45%, #4CBFFF 45%);
+    width: 100%;
+    height: 100vh;
+}
+
+div.auth {
+    width: 100%;
+    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(8, 112, 184, 0.7);
+}
+
+div.auth p.title{
+    padding: 20px;
+    text-align: center;
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+div.auth form{
+    display: block;
+    margin: auto;
+    padding: 20px;
+}
+
+div.auth input.field{
+    display: block;
+    margin: 10px auto;
+    width: 100%;
+    max-width: 400px;
+    padding: 5px 10px;
+    padding-left: 30px;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+}
+
+div.auth input[type="text"]{
+    background: url(../img/user.png) no-repeat scroll 7px 7px;
+    background-size: 16px;
+}
+
+div.auth input[type="email"]{
+    background: url(../img/email.png) no-repeat scroll 7px 7px;
+    background-size: 16px;
+}
+
+div.auth input[type="password"]{
+    background: url(../img/password.png) no-repeat scroll 7px 7px;
+    background-size: 16px;
+}
+
+div.auth button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 25px;
+    border: 1px solid #CCC;
+    background-color: #EEE;
+    border-radius: 40px;
+}
+
+div.auth button:hover {
+    background-color: #34ADFF;
+    border-color: #34ADFF;
+    color: #FFF;
+}
+
+div.auth button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+div.auth p.toogle{
+    padding: 20px;
+    padding-top: 0px;
+    text-align: center;
+    cursor: pointer;
+}
+
+div.auth p.toogle:hover{
+    text-decoration: underline #000;
+}
+
+div.register{
+    display: none;
+}

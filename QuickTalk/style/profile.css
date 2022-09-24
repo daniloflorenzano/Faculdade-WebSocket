@@ -1,0 +1,74 @@
+@import "global.css";
+
+#profile .pictureContainer {
+    display: block;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 200px;
+}
+
+#profile .pictureContainer img {
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: 200px;
+    border-radius: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+#profile .pictureContainer label {
+    position: absolute;
+    margin-top: -200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    opacity: 0;
+    background: #000 url(../img/upload-pic.png) no-repeat center;
+    cursor: pointer;
+}
+
+#profile .pictureContainer label:hover {
+    opacity: 0.7;
+}
+
+#profile p.name {
+    display: block;
+    margin: auto;
+    padding: 0px 20px;
+    text-align: center;
+    font-size: 16pt;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+#profile .row {
+    display: block;
+    margin: 10px 30px;
+    padding: 10px 15px;
+    background-color: #EEE;
+    border-radius: 5px;
+}
+
+#profile div.menu {
+    position: absolute;
+    bottom: 0;
+    width: 25%;
+}
+
+#profile div.menu button{
+    display: block;
+    margin: auto;
+    width: 90%;
+    border: none;
+    border-top: 1px solid #CCC;
+    font-size: 16pt;
+    background: transparent url(../img/logout.png) no-repeat scroll 10px 17px;
+    background-size: 30px;
+    padding: 15px 0px;
+    text-align: right;
+}
+
+#profile div.menu button:hover{
+    width: 60%;
+}
