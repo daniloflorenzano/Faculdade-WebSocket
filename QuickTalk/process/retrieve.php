@@ -17,7 +17,7 @@
         $user = $getUser->get_result()->fetch_assoc();
 
         if ($count < 1) {
-            echo '<p class="info">Envie a sua primeira mensagem para '.$user["Username"].'</p>';
+            echo '<p class="info">Envie a sua primeira mensagem!</p>';
         } else {
             while ($message = $result->fetch_assoc()) {
                 if($message["Sender"] == $uid && $message["Image"] != "") {

@@ -1,7 +1,7 @@
 <?php
     include("check.php");
 
-    if (isset($_GET["id"]) && $_GET["id"] > 0){
+    if (true){
         $user_id = $_GET["id"];
 
         // Get user
@@ -12,7 +12,6 @@
 
         ?>
         <div class="topMenu">
-            <img src="img/close.png" onclick="chat()" />
             <p class="title"><?php echo $user["Username"]; ?></p>
         </div>
 
@@ -20,69 +19,47 @@
 
         <form method="POST" enctype="multipart/form-data" id="sendMessage">
             <input type="number" value="<?php echo $user_id; ?>" name="id" hidden />
-            <input type="text" maxlength="500" name="message" id="messageInput" placeholder="Escreva aqui a sua mensagem" />
+            <input type="text" autocomplete="off" maxlength="500" name="message" id="messageInput" placeholder="Escreva aqui a sua mensagem" />
             <input type='file' name="image" accept="image/x-png,image/jpeg" id="sendImage" hidden />
-            <label for="sendImage"><img src="img/image.png" /></label>
+            <label for="sendMessage">
+                <input type="submit" value="Enviar" onclick="sendMessage()">
+            </label>
         </form>
 
         <script>
-            function sendMessage() {
-                var formData = new FormData($("#sendMessage")[0]);
-                $.ajax({
-                    type: 'post',
-                    url: 'process/send.php',
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        $("#sendMessage")[0].reset();
-                    },
-                    error: function (error) {
-                        Swal.fire({
-                            title: 'Mensagem não enviada',
-                            text: error.statusText,
-                            icon: 'error',
-                            confirmButtonText: 'Tentar novamente'
-                        })
-                    }
-                });
-            }
+            const message = document.querySelector('#messageInput');
+            const userName = document.querySelector('.name').innerHTML;
+            const chat = document.querySelector('.innerContainer');
 
-            $("#messageInput").on('keyup', function (e) {
-                if (e.keyCode === 13 && ($("#messageInput").val().length > 0)) {
-                    sendMessage()
+
+                const webSocket = new WebSocket('ws://localhost:5187');
+
+                webSocket.onmessage = (event) => {
+                    let res = {
+						user: event.data.split(':')[0],
+						message: event.data.split(':')[1]
+					}					
+
+                    let textClass = "msg-user";
+                    if (res.user === userName) {
+                        textClass = "msg-user self-user"
+                    }
+
+                    chat.insertAdjacentHTML('beforeend', `<p class="${textClass}">${res.user}: ${res.message}</p>`);
                 }
-            });
 
-            $("#sendImage").change(function() {
-                sendMessage();
-                console.log("SEND");
-            });
+                function sendMessage() {
+                    webSocket.send(`${userName}: ${message.value}`);
+				    message.value = '';
+                }
 
-            setInterval(() => {
-                $.ajax({
-                    url: 'process/retrieve.php?id=<?php echo $user_id; ?>',
-                    success: function (data) {
-                        $('#chat .innerContainer').html(data);
-                        $('#chat .innerContainer').scrollTop($('#chat .innerContainer').prop("scrollHeight"));
-                    },
-                    error: function (error) {
-                        Swal.fire({
-                            title: 'Erro de chat',
-                            text: error.statusText,
-                            icon: 'error',
-                            confirmButtonText: 'Ok'
-                        })
-                    }
-                });
-            }, 1500);
+                const form = document.querySelector('#sendMessage');
+                form.addEventListener('submit', (e) => e.preventDefault());
         </script>
         <?php
     } else {
         ?>
         <div class="empty">
-            <img src="img/empty-chat.png" />
             <p>Selecione uma conversa para socializar com esse utilizador</p>
         </div>
         <?php
