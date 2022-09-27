@@ -69,12 +69,23 @@
     max-width: 80%;
 }
 
-#chat .innerContainer .sent{
+#chat .innerContainer .msg-user {
     text-align: right;
+    padding: 8px;
+    margin-right: 55px;
+    font-size: 20px;
 }
+   
+#chat .innerContainer .self-user {
+    text-align: left;
+    padding: 8px;
+    margin-left: 27px;
+    font-size: 20px;
+}
+   
 
 #chat .innerContainer .sent p{
-    display: inline-block;
+    -display: inline-block;
     padding: 10px 20px;
     background-color: #4CBFFF;
     color: #FFF;
@@ -87,4 +98,8 @@
     border-radius: 20px;
     max-width: 80%;
     max-height: 300px;
+}
+
+#chat .name .user {
+    font-size: 50px;
 }

@@ -1,6 +1,7 @@
 <?php
     include("check.php");
 
+ 
     if (true){
         $user_id = $_GET["id"];
 
