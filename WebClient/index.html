@@ -33,12 +33,14 @@
 		</main>
 
 		<script>
+			// Define conexão com Servidor Socket
 			const webSocket = new WebSocket('ws://localhost:5187');
 
 			const chatBox = document.querySelector('.chat-box');
 			const userName = document.querySelector('.user-name_input');
 			const message = document.querySelector('.text-box_input');
 
+			// Trata e imprime na tela todas as mensagens recebidas do Servidor
 			webSocket.onmessage = (event) => {
 				if (event.data.length > 0) {
 
@@ -64,6 +66,7 @@
 				}
 			};
 
+			// Trata e envia mensagem para o Servidor
 			function sendMessage() {
 				if (userName.value.trim() !== '' && message.value !== '') {
 					const formatedMessage = `${userName.value}: ${message.value}`;
@@ -73,7 +76,7 @@
 				}
 			}
 
-			// previne comportamento padrão de refresh do form
+			// Previne comportamento padrão de refresh do form
 			const form = document.querySelector('.form');
 
 			form.addEventListener('submit', (e) => {
