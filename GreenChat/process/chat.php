@@ -32,9 +32,10 @@
             const userName = document.querySelector('.name').innerHTML;
             const chatbox = document.querySelector('.innerContainer');
 
-
+                // Define a conexão com o Servidor Socket
                 const webSocket = new WebSocket('ws://localhost:5187');
 
+                // Trata e imprime na tela toda mensagem recebida do Servidor
                 webSocket.onmessage = (event) => {
                     let res = {
 						user: event.data.split(':')[0],
@@ -49,11 +50,13 @@
                     chatbox.insertAdjacentHTML('beforeend', `<p class="${textClass}"><span>${res.user}: ${res.message}</span></p>`);
                 }
 
+                // Trata e envia mensagem para o Servidor
                 function sendMessage() {
                     webSocket.send(`${userName}: ${message.value}`);
 				    message.value = '';
                 }
 
+                // Previne comportamento padrão do form de atualizar a página
                 const form = document.querySelector('#sendMessage');
                 form.addEventListener('submit', (e) => e.preventDefault());
         </script>
