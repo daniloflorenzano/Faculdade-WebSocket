@@ -70,17 +70,40 @@
 }
 
 #chat .innerContainer .msg-user {
-    text-align: right;
     padding: 8px;
-    margin-right: 55px;
+    margin-right: 27px;
     font-size: 20px;
+    margin-top: 25px;
 }
+
+#chat .innerContainer .msg-user span{
+    background-color: rgb(137, 255, 216);
+    border-color: rgb(137, 255, 216);
+    border-style: solid;
+    border-radius: 5px 10px 10px;;
+    font-size: 20px;
+    padding: 10px;
+    margin-top: 25px;
+}
+
    
 #chat .innerContainer .self-user {
-    text-align: left;
+    text-align: right;
     padding: 8px;
     margin-left: 27px;
     font-size: 20px;
+    margin-top: 25px;
+
+}
+
+#chat .innerContainer .self-user span {
+    background-color: #82f7ff;
+    border-color: #82f7ff;
+    border-style: solid;
+    border-radius: 5px 10px 10px;;
+    font-size: 20px;
+    padding: 10px;
+    margin-top: 25px;
 }
    
 

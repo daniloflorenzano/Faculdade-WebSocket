@@ -5,7 +5,7 @@ div.bg {
     top: 0;
     left: 0;
     background-color: #34ADFF;
-    background-image: -webkit-linear-gradient(150deg, #34ADFF 45%, #4CBFFF 45%);
+    background-image: -webkit-linear-gradient(150deg, #00ff99 45%, #00ffd5 45%);
     width: 100%;
     height: 100vh;
 }
@@ -27,6 +27,15 @@ div.auth p.title{
     text-align: center;
     font-size: 24pt;
     font-weight: bold;
+    margin-left: 58px;
+}
+
+div.auth p.titleRegister{
+    padding: 20px;
+    text-align: center;
+    font-size: 24pt;
+    font-weight: bold;
+    margin-left: 29px;
 }
 
 div.auth form{
@@ -71,7 +80,7 @@ div.auth button {
 }
 
 div.auth button:hover {
-    background-color: #34ADFF;
+    background-color: #00ff99;
     border-color: #34ADFF;
     color: #FFF;
 }
@@ -94,4 +103,12 @@ div.auth p.toogle:hover{
 
 div.register{
     display: none;
+}
+
+div.auth .logo{
+    display: flex;
+}
+
+div.auth .logoRegister{
+    display: flex;
 }

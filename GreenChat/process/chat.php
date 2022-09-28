@@ -20,7 +20,7 @@
 
         <form method="POST" enctype="multipart/form-data" id="sendMessage">
             <input type="number" value="<?php echo $user_id; ?>" name="id" hidden />
-            <input type="text" autocomplete="off" maxlength="500" name="message" id="messageInput" placeholder="Escreva aqui a sua mensagem" />
+            <input type="text" require autocomplete="off" maxlength="500" name="message" id="messageInput" placeholder="Escreva aqui a sua mensagem" />
             <input type='file' name="image" accept="image/x-png,image/jpeg" id="sendImage" hidden />
             <label for="sendMessage">
                 <input type="submit" value="Enviar" onclick="sendMessage()">
@@ -46,7 +46,7 @@
                         textClass = "msg-user self-user"
                     }
 
-                    chatbox.insertAdjacentHTML('beforeend', `<p class="${textClass}">${res.user}: ${res.message}</p>`);
+                    chatbox.insertAdjacentHTML('beforeend', `<p class="${textClass}"><span>${res.user}: ${res.message}</span></p>`);
                 }
 
                 function sendMessage() {
