@@ -1,0 +1,96 @@
+@import "global.css";
+
+#inbox input.searchField{
+    display: block;
+    margin: auto;
+    width: 90%;
+    max-width: 300px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #EEE;
+}
+
+#inbox #searchContainer{
+    display: block;
+    margin: 10px auto;
+    width: 90%;
+    max-width: 300px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #EEE;
+    overflow-y: auto;
+    display: none;
+}
+
+#inbox #searchContainer p.noResults{
+    display: block;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+    font-size: 16pt;
+}
+
+#inbox #searchContainer div.row {
+    display: block;
+    cursor: pointer;
+}
+
+#inbox #searchContainer div.row img {
+    display: inline-block;
+    vertical-align: top;
+    width: 48px;
+    height: 48px;
+    border-radius: 48px;
+    object-fit: cover;
+    object-position: center;
+}
+
+#inbox #searchContainer div.row p {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12pt;
+    padding-left: 20px;
+    padding-top: 12px;
+}
+
+#inbox div.empty{
+    width: 90%;
+    display: block;
+    margin: 20px auto;
+}
+
+#inbox div.chat {
+    display: block;
+    margin: 10px 30px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#inbox div.chat:hover{
+    background-color: #EEE;
+}
+
+#inbox div.new{
+    font-weight: bold;
+}
+
+#inbox div.chat img {
+    display: inline-block;
+    vertical-align: top;
+    width: 48px;
+    height: 48px;
+    border-radius: 48px;
+    object-fit: cover;
+    object-position: center;
+}
+
+#inbox div.chat p {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12pt;
+    padding-left: 20px;
+    padding-top: 12px;
+}

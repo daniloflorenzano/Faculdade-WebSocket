@@ -1,0 +1,47 @@
+@import "global.css";
+
+#inbox {
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+    box-shadow: 21px 10px 30px -37px rgba(0,0,0,0.75);
+    overflow-y: auto;
+}
+
+#chat {
+    display: inline-block;
+    vertical-align: top;
+    width: 49%;
+}
+
+#profile {
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+    box-shadow: -21px 10px 30px -37px rgba(0,0,0,0.75);
+}
+
+.column {
+    height: 100vh;
+}
+
+.column p.title{
+    font-weight: bold;
+    font-size: 24pt;
+    padding: 20px 30px;
+}
+
+div.empty img {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 500px;
+}
+
+div.empty p {
+    padding: auto 10%;
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+    font-size: 14pt;
+}
