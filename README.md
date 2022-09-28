@@ -11,4 +11,12 @@ Documentação - https://docs.microsoft.com/pt-br/dotnet/api/system.net.websocke
 ### Cliente
 Documentação - https://developer.mozilla.org/pt-BR/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications
 
+Video Tutorial - https://www.youtube.com/watch?v=tmvL_TlLEhA
 
+Video Tutorial - https://www.youtube.com/watch?v=zpTlJ6dtOxA
+
+Video Tutorial - https://www.youtube.com/watch?v=Z8yCpSxnWOw
+
+Video Tutorial - https://www.youtube.com/watch?v=hXUQpiW9Tho
+
+Video Tutorial - https://www.youtube.com/watch?v=-xmo2wVNpNg
